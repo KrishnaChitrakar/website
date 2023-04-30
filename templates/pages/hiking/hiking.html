@@ -1,0 +1,33 @@
+{% extends "layouts/main.html" %}
+
+{% block content %}
+{% load static %}
+<div class="hiking_section layout_padding">
+    <div class="container">
+       <h1 class="hiking_taital">Services </h1>
+       <p class="hiking_text">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration</p>
+       <div class="hiking_section_2">
+          <div class="row">
+             {% for services in servicesData %}
+             <div class="col-md-4">
+                <h2>{{ exploit.title }}</h2>
+                {% for exploit in services.exploit_set.all %}
+                <div class="card">
+                    {% if exploit.photo %}
+                    <img src="{{ exploit.photo.url }}" class="card-img-top" height="200" alt="...">
+                    {% endif %}
+                    <div class="card-body">
+                      <h5 class="card-title">{{ exploit.title }}</h5>
+                      <p class="card-text">{{  exploit.summary|safe }}</p>
+                      <a href="{% url 'exploit_details' exploit.slug %}" class="btn btn-primary">Go somewhere</a>
+                    </div>
+                  </div>
+                {% endfor %}
+             </div>
+             {% endfor %}
+          </div>
+       </div>
+    </div>
+ </div>
+
+ {% endblock %}
